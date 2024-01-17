@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from expense_tracker.web_app.models import Expense
+
+
+@admin.register(Expense)
+class ExpenseAdmin(admin.ModelAdmin):
+    pass
