@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'expense_tracker.web_app',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
