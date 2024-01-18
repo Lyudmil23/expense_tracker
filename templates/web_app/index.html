@@ -1,6 +1,8 @@
 {% extends 'base/base.html' %}
+{% load static %}
 {% block body %}
-    <h1>This is the index page</h1>
+    <div class="m-10 font-bold">Add Expense ➕</div>
+
     <form class="shadow-lg m-10 rounded-lg" method="post">
         {% csrf_token %}
         <div class="form-container px-10 py-10 flex">
@@ -35,9 +37,9 @@
         </div>
     </form>
 
-    <div>Expenses</div>
+    <div class="m-10 font-bold">Expenses 💵</div>
     <div class="shadow-lg m-10 rounded-lg">
-        <div class="expense-header flex flex-wrap space-x-40">
+        <div class="expense-header flex flex-wrap space-x-40 px-20 py-5">
             <span>Name</span>
             <span>Amount</span>
             <span>Date</span>
@@ -53,8 +55,17 @@
             <span class="font-bold">{{ expense.amount }}</span>
             <span class="font-bold">{{ expense.date }}</span>
             <span class="font-bold">{{ expense.category }}</span>
-            <span class="font-bold"><a href="{% url 'edit' expense.pk %}">Edit</a></span>
-            <span class="font-bold"><a href="">Delete</a></span>
+            <span class="pl-28"><a href="{% url 'edit' expense.pk %}">
+                <img class="h-5" src="{% static 'images/edit.png' %}">
+            </a></span>
+            <span class="pl-18">
+                <form method="post" action="{% url 'delete' expense.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" name="delete">
+                        <img class="h-5" src="{% static 'images/delete.png' %}">
+                    </button>
+                </form>
+            </span>
         </div>
         {% endfor %}
     </div>
